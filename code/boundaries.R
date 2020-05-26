@@ -8,15 +8,15 @@ library(leaflet)
 
 setwd("~/Desktop/Spring 2020/GIS3/Final Project")
 
-
 ### NC County Boundaries
 
 # load state county boundaries
 nc <- st_read(dsn = "Data/NCDOT_County_Boundaries-shp/NCDOT_County_Boundaries.shp")
+st_crs(nc)
 
 # subset Upper Coast Plain counties
 UP_counties <- nc %>%
-  select(CountyName, NAME, ShapeSTAre, ShapeSTLen, geometry) %>%
+  dplyr::select(CountyName, NAME, geometry) %>%
   filter(CountyName %in% c("Edgecombe", "Halifax", "Nash", "Northampton", "Wilson"))
 
 plot(UP_counties["geometry"])
