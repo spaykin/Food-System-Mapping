@@ -1,0 +1,13 @@
+name: FoodSystemMap
+title: FoodSystemMap
+username:
+account: susan-paykin
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2375010
+bundleId: 3203322
+url: https://susan-paykin.shinyapps.io/FoodSystemMap/
+when: 1590726971.12497
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: US_2019_CDL_legend.jpg|www/US_2019_CDL_legend_topCrops.png
