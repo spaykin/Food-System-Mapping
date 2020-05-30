@@ -10,6 +10,8 @@ library(readr)
 library(tmap)
 library(leaflet)
 
+#### CLEAN & SUBSET DATA ####
+
 # set directory
 setwd("~/Desktop/Spring 2020/GIS3/Final Project")
 
@@ -32,7 +34,7 @@ plot(UP_localfoods["geometry"])
 # write shapefile
 st_write(UP_localfoods, "UP_localfoods.shp")
 
-##### MAPS by CATEGORY #####
+##### CREATE MAPS #####
 
 # view unique categories
 unique(UP_localfoods$CATEGORY)
@@ -43,7 +45,7 @@ localfoodsMap <-
   tm_borders() +
   tm_text(text = "CountyName") +
   tm_shape(integrity_subset) + # USDA certified organic operations
-  tm_bubbles(col = "purple", size = .4, alpha = 0.6,
+  tm_bubbles(col = "purple", size = .3, alpha = 0.6,
              popup.vars = c("Name" = "Name",
                             "Certifier" = "Certifier",
                             "Address" = "addresses",
@@ -62,6 +64,18 @@ localfoodsMap <-
   tm_layout(frame = FALSE)
 
 localfoodsMap
+
+# food infrastructure, no organic 
+tm_shape(UP_counties) +
+  tm_borders() +
+  tm_text(text = "CountyName") +
+  tm_shape(UP_localfoods) +
+  tm_bubbles("CATEGORY", size = .5, alpha = 0.7,
+             popup.vars=c("Category"="CATEGORY", 
+                          "Name"="NAME",
+                          "City"="CITY",
+                          "County" = "COUNTY")) +
+  tm_layout(frame = FALSE)
 
 # dairy
 dairy <- 

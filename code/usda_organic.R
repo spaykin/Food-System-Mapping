@@ -14,6 +14,8 @@ library(readxl)
 library(tmap)
 library(leaflet)
 
+#### CLEAN & SUBSET DATA ####
+
 # set directory
 setwd("~/Desktop/Spring 2020/GIS3/Final Project")
 
@@ -23,12 +25,14 @@ integrity <- read_xlsx("Data/USDA Integrity 2019/NC_USDA Integrity 2019.xlsx") %
 
 names(integrity)
 
+##### GEOCODE ADDRESS DATA #####
+
+# merge variables to create one addresses variable
 addresses <- paste(integrity$`Physical Address: Street 1`, 
                        integrity$`Physical Address: City`, 
                        integrity$`Physical Address: State/Province`, 
                        integrity$`Physical Address: ZIP/ Postal Code`, 
                        sep = ", ")
-
 integrity$addresses <- addresses
 
 # Loop through the addresses to get the latitude and longitude of each address and add it to the
@@ -50,6 +54,9 @@ for(i in 1:nrow(integrity))
 
 # Write a CSV file containing origAddress to the working directory
 write.csv(integrity, "geocoded.csv", row.names=FALSE)
+
+
+##### PROJECT LAT/LONG POINTS #####
 
 # Read in Shapefile
 geo_integrity <- st_read("Data/USDA Integrity 2019/integrity_geo2.shp")
@@ -76,9 +83,8 @@ geo_integrity_df <- spTransform(geo_integrity_df, "+proj=lcc +lat_1=36.166666666
 geo_integrity <- st_as_sf(geo_integrity_df)
 
 UP_integrity <- st_intersection(UP_counties, geo_integrity)
-class(UP_integrity)
 
-#### MAPS
+##### CREATE MAPS #####
 
 plot(UP_counties["geometry"])
 plot(geo_integrity["geometry"], add = T)

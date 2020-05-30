@@ -11,8 +11,6 @@ library(leaflet)
 # set directory
 setwd("~/Desktop/Spring 2020/GIS3/Final Project")
 
-
-
 # load state county-level health data
 library(readxl)
 NC_health <- read_csv("Data/County Health/AdditionalMeasureData.csv", skip = 1)
@@ -52,7 +50,8 @@ diabetesMap <-
   tm_borders() +
   tm_fill(col = "% Diabetic", alpha = 0.8, palette = "BuPu") +
   tm_text(text = "NAME") +
-  tm_layout(frame = FALSE, title = "Percentage of Population with Diabetes")
+  tm_layout(frame = FALSE, 
+            main.title = "Percentage of Population with Diabetes")
 diabetesMap
 
 # % Food Insecure Map
@@ -63,7 +62,6 @@ foodinsecureMap <-
   tm_text(text = "NAME") +
   tm_layout(frame = FALSE)
 foodinsecureMap
-
 
 # % Uninsured Map
 uninsuredMap <- 

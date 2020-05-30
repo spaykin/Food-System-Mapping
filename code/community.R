@@ -18,7 +18,6 @@ popMap <-
   tm_text(text = "NAME") +
   tm_layout(frame = FALSE)
 popMap
-
             
 # "% Free or Reduced Lunch"
 lunchMap <- 
@@ -35,8 +34,8 @@ incomeMap <-
   tm_fill(col = "Household Income", alpha = 0.8, palette = "BuGn") +
   tm_text(text = "NAME") +
   tm_layout(frame = FALSE, 
-            title = "Household Median Income")
-
+            main.title = "Median Household Income")
+incomeMap
 
 # "% Severe Housing Cost Burden" 
 housingcostMap <- 
@@ -53,4 +52,3 @@ segregationMap <-
   tm_fill(col = "Segregation Index", alpha = 0.8, palette = "BuGn") +
   tm_text(text = "NAME") +
   tm_layout(frame = FALSE)
-

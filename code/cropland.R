@@ -206,8 +206,9 @@ UP_cdl3 <- raster::extract(cdl, UP_counties2, df=TRUE)
 glimpse(UP_cdl3)
 names(UP_cdl3) <- c("ID", "catCode")
 
-
-##### CREATE MAPS #####
+###############################
+##### STEP 4: CREATE MAPS #####
+###############################
 
 # plot map
 plot(mask_cdl) + plot(UP_counties2["geometry"], add = T)
@@ -224,6 +225,7 @@ croplandMap
 # leaflet map
 
 # aggregate data
+mask_cdl <- raster("Food-System-Mapping/data/mask_cdl.grd")
 mask_cdl_agg <- raster::aggregate(mask_cdl, fact=5)
 
 # leaflet map 
@@ -243,7 +245,3 @@ croplandMapLeaflet
 # check number and names of layers
 raster::nlayers(mask_cdl_agg)
 names(mask_cdl_agg)
-
-
-
-
