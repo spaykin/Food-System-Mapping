@@ -1,6 +1,6 @@
-# Food-System-Mapping
-Mapping food systems using geocomputation methods in R
-
+# Mapping Regional Food Systems
+*Using geocomputation methods in R to map food and farm assets*
+---------------------
 
 ## Authorship 
 Susan Paykin, M.P.P., University of Chicago Harris School of Public Policy
